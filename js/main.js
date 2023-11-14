@@ -9,6 +9,14 @@ $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
 document.addEventListener('DOMContentLoaded', handleContent);
 
+function toggleNoEntries() {
+  if (data.entries.length === 0) {
+    const $h1 = document.createElement('h1');
+    $h1.innerText = 'THERE ARE NO ENTRIES RECORDED';
+    $ul.appendChild($h1);
+  }
+}
+
 function handleImage(event) {
   $img.setAttribute('src', event.target.value);
 }
@@ -61,6 +69,7 @@ function renderEntry(entry) {
 }
 
 function handleContent(event) {
+  toggleNoEntries();
   for (let i = 0; i < data.entries.length; i++) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
