@@ -1,7 +1,5 @@
 /* global data */
 
-// console.log(data);
-
 const $imgInput = document.querySelector('#photo-url');
 const $img = document.querySelector('#entry-img');
 const $formSubmit = document.querySelector('#entry-form');
@@ -24,7 +22,7 @@ function handleSubmit(event) {
   };
 
   data.nextEntryId++;
-  data.entries.push(entryValues);
+  data.entries.unshift(entryValues);
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
   $formSubmit.reset();
 }
