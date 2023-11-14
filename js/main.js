@@ -7,6 +7,7 @@ const $ul = document.querySelector('ul');
 
 $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
+document.addEventListener('DOMContentLoaded', handleContent);
 
 function handleImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -59,6 +60,8 @@ function renderEntry(entry) {
   return $li;
 }
 
-for (let i = 0; i < data.entries.length; i++) {
-  $ul.appendChild(renderEntry(data.entries[i]));
+function handleContent(event) {
+  for (let i = 0; i < data.entries.length; i++) {
+    $ul.appendChild(renderEntry(data.entries[i]));
+  }
 }
