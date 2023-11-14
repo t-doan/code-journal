@@ -44,8 +44,8 @@ body {
   width: 100%;
 }
 
-label[for='photo-url'],
-label[for='notes'] {
+label[for="photo-url"],
+label[for="notes"] {
   padding-top: 1.75rem;
 }
 
