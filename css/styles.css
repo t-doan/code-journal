@@ -19,11 +19,10 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding-left: 1rem;
 }
 
 .padding-zero {
-  padding: 0;
+  padding-left: 0;
 }
 
 .label-sizing {
@@ -74,5 +73,5 @@ ul {
 }
 
 li {
-  padding: 0.25rem;
+  padding-bottom: 0.4rem;
 }
