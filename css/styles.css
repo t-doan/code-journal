@@ -44,8 +44,8 @@ body {
   width: 100%;
 }
 
-label[for="photo-url"],
-label[for="notes"] {
+label[for='photo-url'],
+label[for='notes'] {
   padding-top: 1.75rem;
 }
 
@@ -66,4 +66,13 @@ label[for="notes"] {
   margin-top: 1rem;
   padding: 10px;
   border-radius: 0.45em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 0.25rem;
 }
