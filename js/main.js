@@ -9,14 +9,6 @@ $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
 document.addEventListener('DOMContentLoaded', handleContent);
 
-function toggleNoEntries() {
-  if (data.entries.length === 0) {
-    const $h1 = document.createElement('h1');
-    $h1.innerText = 'THERE ARE NO ENTRIES RECORDED';
-    $ul.appendChild($h1);
-  }
-}
-
 function handleImage(event) {
   $img.setAttribute('src', event.target.value);
 }
@@ -74,3 +66,25 @@ function handleContent(event) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
 }
+
+function toggleNoEntries() {
+  if (data.entries.length === 0) {
+    const $h1 = document.createElement('h1');
+    $h1.innerText = 'THERE ARE NO ENTRIES RECORDED';
+    $ul.appendChild($h1);
+  }
+}
+
+function viewSwap(view) {
+  if (view === 'entries') {
+    document.getElementById('entries').classList.remove('hidden');
+    document.getElementById('entryForm').className = 'hidden';
+    data.view = view;
+  } else if (view === 'entryForm') {
+    document.getElementById('entryForm').classList.remove('hidden');
+    document.getElementById('entries').className = 'hidden';
+    data.view = view;
+  }
+}
+
+viewSwap('entryForm');

@@ -17,14 +17,19 @@
   </head>
   <body>
     <header class="header-color">
-      <div class="container">
+      <div class="container display-flex align-center">
         <h1 class="margin-none header-padding">Code Journal</h1>
+        <div>
+          <h3>Entries</h3>
+        </div>
       </div>
     </header>
     <main class="container">
-      <div data-view="entry-form">
+      <div id="entryForm" data-view="entry-form">
         <form id="entry-form">
-          <h1>New Entry</h1>
+          <div class="row">
+            <h1>New Entry</h1>
+          </div>
           <div class="row">
             <div class="column-half padding-zero">
               <img
@@ -59,8 +64,11 @@
           </div>
         </form>
       </div>
-      <div data-view="entries" class=".hidden">
-        <h1>Entries</h1>
+      <div id="entries" data-view="entries" class="hidden">
+        <div class="row justify-content-between">
+          <h1>Entries</h1>
+          <input type="button" id="new-button" name="newEntry" value="new" />
+        </div>
         <ul></ul>
       </div>
     </main>
