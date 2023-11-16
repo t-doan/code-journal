@@ -6,6 +6,9 @@ const $formSubmit = document.querySelector('#entry-form');
 const $ul = document.querySelector('ul');
 const $entry = document.querySelector('.entry');
 const $entryForm = document.querySelector('.entryForm');
+const $noEntry = document.querySelector('#noEntry');
+const $entriesView = document.querySelector('#entries');
+const $entryFormView = document.querySelector('#entryForm');
 
 $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
@@ -80,26 +83,22 @@ function handleContent(event) {
 }
 
 function toggleNoEntries() {
-  const $h1 = document.createElement('h1');
+  console.log('length:', data.entries.length);
   if (data.entries.length === 0) {
-    $h1.innerText = 'THERE ARE NO ENTRIES RECORDED';
-    $ul.appendChild($h1);
+    $noEntry.classList.remove('hidden');
   } else {
-    const existing = $ul.querySelector('h1');
-    if (existing) {
-      existing.remove();
-    }
+    $noEntry.setAttribute('class', 'hidden');
   }
 }
 
 function viewSwap(view) {
   if (view === 'entries') {
-    document.getElementById('entries').classList.remove('hidden');
-    document.getElementById('entryForm').className = 'hidden';
+    $entriesView.classList.remove('hidden');
+    $entryFormView.className = 'hidden';
     data.view = view;
   } else if (view === 'entryForm') {
-    document.getElementById('entryForm').classList.remove('hidden');
-    document.getElementById('entries').className = 'hidden';
+    $entryFormView.classList.remove('hidden');
+    $entriesView.className = 'hidden';
     data.view = view;
   }
 }
