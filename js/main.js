@@ -50,16 +50,21 @@ function renderEntry(entry) {
   const $imgEntry = document.createElement('img');
   const $columnHalfText = document.createElement('div');
   const $flexColumn = document.createElement('div');
+  const $div = document.createElement('div');
   const $h3 = document.createElement('h3');
   const $p = document.createElement('p');
+  const $i = document.createElement('i');
 
+  $li.setAttribute('data-entry-id', entry.entryId);
   $row.className = 'row';
   $columnHalfImg.className = 'column-half padding-zero';
   $imgEntry.className = 'column-full padding-zero entry-img';
   $imgEntry.setAttribute('src', entry.image);
-  $columnHalfText.className = 'coiumn-half';
+  $columnHalfText.className = 'column-half';
   $flexColumn.className = 'flex-direction-column';
+  $div.className = 'display-flex icon-space';
   $h3.innerText = entry.title;
+  $i.className = 'fa fa-pencil';
   $p.innerText = entry.note;
 
   $li.appendChild($row);
@@ -67,7 +72,9 @@ function renderEntry(entry) {
   $columnHalfImg.appendChild($imgEntry);
   $row.appendChild($columnHalfText);
   $columnHalfText.appendChild($flexColumn);
-  $flexColumn.appendChild($h3);
+  $flexColumn.appendChild($div);
+  $div.appendChild($h3);
+  $div.appendChild($i);
   $columnHalfText.appendChild($flexColumn);
   $flexColumn.appendChild($p);
 
