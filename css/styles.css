@@ -110,5 +110,9 @@ a {
 .icon-space {
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
+}
+
+i {
+  cursor: pointer;
 }

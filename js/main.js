@@ -9,6 +9,7 @@ const $entryForm = document.querySelector('.entryForm');
 const $noEntry = document.querySelector('#noEntry');
 const $entriesView = document.querySelector('#entries');
 const $entryFormView = document.querySelector('#entryForm');
+const $formTitle = document.querySelector('#entry-form h1');
 
 $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
@@ -19,6 +20,7 @@ $entry.addEventListener('click', function () {
 $entryForm.addEventListener('click', function () {
   viewSwap('entryForm');
 });
+$ul.addEventListener('click', handleEdit);
 
 function handleImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -64,7 +66,7 @@ function renderEntry(entry) {
   $flexColumn.className = 'flex-direction-column';
   $div.className = 'display-flex icon-space';
   $h3.innerText = entry.title;
-  $i.className = 'fa fa-pencil';
+  $i.className = 'fa fa-pencil editor';
   $p.innerText = entry.note;
 
   $li.appendChild($row);
@@ -107,4 +109,16 @@ function viewSwap(view) {
     $entriesView.className = 'hidden';
     data.view = view;
   }
+}
+
+function handleEdit(entry) {
+  viewSwap('entryForm');
+  const $getData = entry.target.closest('li').getAttribute('data-entry-id');
+  data.editing = data.entries[data.entries.length - $getData];
+  $formTitle.innerText = 'Edit Entry';
+
+  $formSubmit.elements.title.value = data.editing.title;
+  $img.setAttribute('src', data.editing.image);
+  $formSubmit.elements.photo.value = data.editing.image;
+  $formSubmit.elements.notes.value = data.editing.note;
 }
