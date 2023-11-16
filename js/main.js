@@ -83,7 +83,6 @@ function handleContent(event) {
 }
 
 function toggleNoEntries() {
-  console.log('length:', data.entries.length);
   if (data.entries.length === 0) {
     $noEntry.classList.remove('hidden');
   } else {
