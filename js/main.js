@@ -35,6 +35,9 @@ function handleSubmit(event) {
   data.entries.unshift(entryValues);
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
   $formSubmit.reset();
+  $ul.prepend(renderEntry(entryValues));
+  toggleNoEntries();
+  viewSwap('entries');
 }
 
 function renderEntry(entry) {
@@ -70,18 +73,25 @@ function renderEntry(entry) {
 
 function handleContent(event) {
   toggleNoEntries();
+  viewSwap(data.view);
   for (let i = 0; i < data.entries.length; i++) {
     $ul.appendChild(renderEntry(data.entries[i]));
   }
 }
 
 function toggleNoEntries() {
+  const $h1 = document.createElement('h1');
   if (data.entries.length === 0) {
-    const $h1 = document.createElement('h1');
     $h1.innerText = 'THERE ARE NO ENTRIES RECORDED';
     $ul.appendChild($h1);
+  } else {
+    const existing = $ul.querySelector('h1');
+    if (existing) {
+      existing.remove();
+    }
   }
 }
+
 function viewSwap(view) {
   if (view === 'entries') {
     document.getElementById('entries').classList.remove('hidden');
