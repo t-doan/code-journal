@@ -15,15 +15,22 @@ body {
   padding: 30px 0;
 }
 
+.display-flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
 .flex-direction-column {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding-left: 1rem;
 }
 
 .padding-zero {
-  padding: 0;
+  padding-left: 0;
 }
 
 .label-sizing {
@@ -44,8 +51,8 @@ body {
   width: 100%;
 }
 
-label[for="photo-url"],
-label[for="notes"] {
+label[for='photo-url'],
+label[for='notes'] {
   padding-top: 1.75rem;
 }
 
@@ -58,7 +65,9 @@ label[for="notes"] {
   justify-content: flex-end;
 }
 
-#save-button {
+#save-button,
+#new-button {
+  font-family: 'Times New Roman', Times, serif;
   background-color: #4c2474;
   color: #fff;
   font-size: 22px;
@@ -66,4 +75,34 @@ label[for="notes"] {
   margin-top: 1rem;
   padding: 10px;
   border-radius: 0.45em;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding-bottom: 0.4rem;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+#new-button {
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 4em;
+  height: 2em;
+  border-radius: 0.25em;
+}
+
+a {
+  display: flex;
+  text-decoration: none;
+  color: #fff;
+  padding-left: 1.5rem;
 }
