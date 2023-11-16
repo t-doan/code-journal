@@ -4,10 +4,18 @@ const $imgInput = document.querySelector('#photo-url');
 const $img = document.querySelector('#entry-img');
 const $formSubmit = document.querySelector('#entry-form');
 const $ul = document.querySelector('ul');
+const $entry = document.querySelector('.entry');
+const $entryForm = document.querySelector('.entryForm');
 
 $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
 document.addEventListener('DOMContentLoaded', handleContent);
+$entry.addEventListener('click', function () {
+  viewSwap('entries');
+});
+$entryForm.addEventListener('click', function () {
+  viewSwap('entryForm');
+});
 
 function handleImage(event) {
   $img.setAttribute('src', event.target.value);
@@ -74,7 +82,6 @@ function toggleNoEntries() {
     $ul.appendChild($h1);
   }
 }
-
 function viewSwap(view) {
   if (view === 'entries') {
     document.getElementById('entries').classList.remove('hidden');
@@ -86,5 +93,3 @@ function viewSwap(view) {
     data.view = view;
   }
 }
-
-viewSwap('entryForm');

@@ -76,6 +76,7 @@ label[for='notes'] {
   margin-top: 1rem;
   padding: 10px;
   border-radius: 0.45em;
+  text-align: center;
 }
 
 ul {
@@ -102,4 +103,9 @@ h3 {
   width: 4em;
   height: 2em;
   border-radius: 0.25em;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
 }
