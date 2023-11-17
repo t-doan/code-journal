@@ -27,20 +27,43 @@ function handleImage(event) {
 }
 
 function handleSubmit(event) {
+  const $li = document.querySelectorAll('li');
   event.preventDefault();
-
-  const entryValues = {
-    title: $formSubmit.elements.title.value,
-    image: $formSubmit.elements.photo.value,
-    note: $formSubmit.elements.notes.value,
-    entryId: data.nextEntryId,
-  };
-
-  data.nextEntryId++;
-  data.entries.unshift(entryValues);
+  let entryValues = {};
+  if (data.editing === null) {
+    entryValues = {
+      title: $formSubmit.elements.title.value,
+      image: $formSubmit.elements.photo.value,
+      note: $formSubmit.elements.notes.value,
+      entryId: data.nextEntryId,
+    };
+    data.nextEntryId++;
+    data.entries.unshift(entryValues);
+    $ul.prepend(renderEntry(entryValues));
+  } else {
+    entryValues = {
+      title: $formSubmit.elements.title.value,
+      image: $formSubmit.elements.photo.value,
+      note: $formSubmit.elements.notes.value,
+      entryId: data.editing.entryId,
+    };
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === entryValues.entryId) {
+        data.entries[i] = entryValues;
+        $formTitle.innerText = 'New Entry';
+      }
+    }
+  }
+  for (let i = 0; i < $li.length; i++) {
+    const $getData = $li[i].getAttribute('data-entry-id');
+    if ($getData === entryValues.entryId.toString()) {
+      $li[i].replaceWith(renderEntry(entryValues));
+      data.editing = null;
+      break;
+    }
+  }
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
   $formSubmit.reset();
-  $ul.prepend(renderEntry(entryValues));
   toggleNoEntries();
   viewSwap('entries');
 }
