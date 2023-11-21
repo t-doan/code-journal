@@ -135,9 +135,16 @@ function viewSwap(view) {
 }
 
 function handleEdit(entry) {
-  viewSwap('entryForm');
   const $getData = entry.target.closest('li').getAttribute('data-entry-id');
-  data.editing = data.entries[data.entries.length - $getData];
+  viewSwap('entryForm');
+  for (let i = 0; i < data.entries.length; i++) {
+    console.log(data.entries[i]);
+    if (data.entries[i].entryId.toString() === $getData) {
+      console.log('yay');
+      data.editing = data.entries[i];
+      break;
+    }
+  }
   $formTitle.innerText = 'Edit Entry';
 
   $formSubmit.elements.title.value = data.editing.title;
