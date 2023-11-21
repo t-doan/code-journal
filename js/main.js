@@ -138,9 +138,7 @@ function handleEdit(entry) {
   const $getData = entry.target.closest('li').getAttribute('data-entry-id');
   viewSwap('entryForm');
   for (let i = 0; i < data.entries.length; i++) {
-    console.log(data.entries[i]);
     if (data.entries[i].entryId.toString() === $getData) {
-      console.log('yay');
       data.editing = data.entries[i];
       break;
     }
