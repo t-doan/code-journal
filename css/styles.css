@@ -29,6 +29,10 @@ body {
   flex-wrap: wrap;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .padding-zero {
   padding: 0;
 }
@@ -69,6 +73,10 @@ label[for='notes'] {
   justify-content: flex-start;
 }
 
+.justify-content-between {
+  justify-content: space-between;
+}
+
 #save-button,
 #new-button {
   font-family: 'Times New Roman', Times, serif;
@@ -90,10 +98,6 @@ ul {
 
 li {
   padding-bottom: 0.4rem;
-}
-
-.justify-content-between {
-  justify-content: space-between;
 }
 
 #new-button {
@@ -128,4 +132,54 @@ i {
   text-decoration: underline;
   font-size: 1.15em;
   cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.modal {
+  border: 1px solid black;
+  width: 26rem;
+  background-color: white;
+  padding: 1.1rem;
+  position: absolute;
+  left: 47rem;
+  top: 24rem;
+}
+
+.cancel-prompt {
+  font-size: 22px;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 100;
+}
+
+.cancel-button {
+  background-color: #efefef;
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 0.25em;
+  text-align: center;
+  cursor: pointer;
+  border-color: transparent;
+}
+
+.confirm-button {
+  background-color: #d63528;
+  font-size: 22px;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 0.25em;
+  text-align: center;
+  cursor: pointer;
+  border-color: transparent;
+  color: white;
+}
+
+.dim {
+  position: absolute;
+  background-color: #111;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
 }
