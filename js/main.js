@@ -10,6 +10,7 @@ const $noEntry = document.querySelector('#noEntry');
 const $entriesView = document.querySelector('#entries');
 const $entryFormView = document.querySelector('#entryForm');
 const $formTitle = document.querySelector('#entry-form h1');
+const $deleteButton = document.querySelector('.delete-button');
 
 $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
@@ -130,6 +131,7 @@ function viewSwap(view) {
   } else if (view === 'entryForm') {
     $entryFormView.classList.remove('hidden');
     $entriesView.className = 'hidden';
+    $deleteButton.classList.add('hidden');
     data.view = view;
   }
 }
@@ -137,6 +139,7 @@ function viewSwap(view) {
 function handleEdit(entry) {
   const $getData = entry.target.closest('li').getAttribute('data-entry-id');
   viewSwap('entryForm');
+  $deleteButton.classList.remove('hidden');
   for (let i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId.toString() === $getData) {
       data.editing = data.entries[i];
@@ -144,7 +147,6 @@ function handleEdit(entry) {
     }
   }
   $formTitle.innerText = 'Edit Entry';
-
   $formSubmit.elements.title.value = data.editing.title;
   $img.setAttribute('src', data.editing.image);
   $formSubmit.elements.photo.value = data.editing.image;

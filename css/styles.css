@@ -30,7 +30,7 @@ body {
 }
 
 .padding-zero {
-  padding-left: 0;
+  padding: 0;
 }
 
 .label-sizing {
@@ -65,6 +65,10 @@ label[for='notes'] {
   justify-content: flex-end;
 }
 
+.justify-content-start {
+  justify-content: flex-start;
+}
+
 #save-button,
 #new-button {
   font-family: 'Times New Roman', Times, serif;
@@ -76,6 +80,7 @@ label[for='notes'] {
   padding: 10px;
   border-radius: 0.45em;
   text-align: center;
+  cursor: pointer;
 }
 
 ul {
@@ -114,5 +119,13 @@ a {
 }
 
 i {
+  cursor: pointer;
+}
+
+.delete-button {
+  border-color: transparent;
+  color: red;
+  text-decoration: underline;
+  font-size: 1.15em;
   cursor: pointer;
 }
