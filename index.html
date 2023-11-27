@@ -26,6 +26,7 @@
     </header>
     <main class="container">
       <div id="entryForm" data-view="entry-form">
+        <div class="dim hidden"></div>
         <form id="entry-form">
           <div class="row">
             <h1>New Entry</h1>
@@ -59,10 +60,29 @@
             <label class="label-sizing" for="notes">Notes</label>
             <textarea id="notes" name="notes" required></textarea>
           </div>
-          <div class="row justify-content-end">
-            <input type="submit" id="save-button" name="save" value="save" />
+          <div class="row">
+            <div
+              class="column-half display-flex justify-content-start align-center padding-zero">
+              <input
+                type="button"
+                class="delete-button hidden"
+                name="delete"
+                value="Delete Entry" />
+            </div>
+            <div
+              class="column-half display-flex justify-content-end padding-zero">
+              <input type="submit" id="save-button" name="save" value="save" />
+            </div>
           </div>
         </form>
+        <div
+          class="modal display-flex flex-wrap justify-content-between hidden">
+          <h4 class="cancel-prompt">
+            Are you sure you want to delete this entry?
+          </h4>
+          <button class="cancel-button">Cancel</button>
+          <button class="confirm-button">Confirm</button>
+        </div>
       </div>
       <div id="entries" data-view="entries" class="hidden">
         <div class="row justify-content-between">

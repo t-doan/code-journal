@@ -10,7 +10,15 @@ const $noEntry = document.querySelector('#noEntry');
 const $entriesView = document.querySelector('#entries');
 const $entryFormView = document.querySelector('#entryForm');
 const $formTitle = document.querySelector('#entry-form h1');
+const $deleteButton = document.querySelector('.delete-button');
+const $dim = document.querySelector('.dim');
+const $confirmButton = document.querySelector('.confirm-button');
+const $cancelButton = document.querySelector('.cancel-button');
+const $modal = document.querySelector('.modal');
 
+$confirmButton.addEventListener('click', handleConfirmDelete);
+$cancelButton.addEventListener('click', handleCancel);
+$deleteButton.addEventListener('click', handleModal);
 $formSubmit.addEventListener('submit', handleSubmit);
 $imgInput.addEventListener('input', handleImage);
 document.addEventListener('DOMContentLoaded', handleContent);
@@ -40,6 +48,7 @@ function handleSubmit(event) {
     data.nextEntryId++;
     data.entries.unshift(entryValues);
     $ul.prepend(renderEntry(entryValues));
+    clearForm();
   } else {
     entryValues = {
       title: $formSubmit.elements.title.value,
@@ -50,18 +59,22 @@ function handleSubmit(event) {
     for (let i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === entryValues.entryId) {
         data.entries[i] = entryValues;
-        $formTitle.innerText = 'New Entry';
+      }
+    }
+    for (let i = 0; i < $li.length; i++) {
+      const $getData = $li[i].getAttribute('data-entry-id');
+      if ($getData === entryValues.entryId.toString()) {
+        $li[i].replaceWith(renderEntry(entryValues));
+        data.editing = null;
+        break;
       }
     }
   }
-  for (let i = 0; i < $li.length; i++) {
-    const $getData = $li[i].getAttribute('data-entry-id');
-    if ($getData === entryValues.entryId.toString()) {
-      $li[i].replaceWith(renderEntry(entryValues));
-      data.editing = null;
-      break;
-    }
-  }
+  clearForm();
+}
+
+function clearForm() {
+  $formTitle.innerText = 'New Entry';
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
   $formSubmit.reset();
   toggleNoEntries();
@@ -125,18 +138,19 @@ function toggleNoEntries() {
 function viewSwap(view) {
   if (view === 'entries') {
     $entriesView.classList.remove('hidden');
-    $entryFormView.className = 'hidden';
+    $entryFormView.classList.add('hidden');
     data.view = view;
   } else if (view === 'entryForm') {
     $entryFormView.classList.remove('hidden');
-    $entriesView.className = 'hidden';
+    $entriesView.classList.add('hidden');
+    $deleteButton.classList.add('hidden');
     data.view = view;
   }
 }
 
 function handleEdit(entry) {
-  const $getData = entry.target.closest('li').getAttribute('data-entry-id');
   viewSwap('entryForm');
+  const $getData = entry.target.closest('li').getAttribute('data-entry-id');
   for (let i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId.toString() === $getData) {
       data.editing = data.entries[i];
@@ -144,9 +158,39 @@ function handleEdit(entry) {
     }
   }
   $formTitle.innerText = 'Edit Entry';
-
   $formSubmit.elements.title.value = data.editing.title;
   $img.setAttribute('src', data.editing.image);
   $formSubmit.elements.photo.value = data.editing.image;
   $formSubmit.elements.notes.value = data.editing.note;
+  $deleteButton.classList.remove('hidden');
+}
+
+function handleModal() {
+  $dim.classList.remove('hidden');
+  $modal.classList.remove('hidden');
+}
+
+function handleCancel() {
+  $dim.classList.add('hidden');
+  $modal.classList.add('hidden');
+}
+
+function handleConfirmDelete(event) {
+  const $li = document.querySelectorAll('li');
+  for (const list of $li) {
+    const $getLi = list.getAttribute('data-entry-id');
+    if (data.editing.entryId.toString() === $getLi) {
+      list.remove();
+    }
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i] === data.editing) {
+        data.entries.shift(i);
+      }
+    }
+  }
+  data.editing = null;
+  clearForm();
+  toggleNoEntries();
+  handleCancel();
+  viewSwap('entries');
 }
