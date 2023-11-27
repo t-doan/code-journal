@@ -48,6 +48,7 @@ function handleSubmit(event) {
     data.nextEntryId++;
     data.entries.unshift(entryValues);
     $ul.prepend(renderEntry(entryValues));
+    clearForm();
   } else {
     entryValues = {
       title: $formSubmit.elements.title.value,
@@ -69,6 +70,10 @@ function handleSubmit(event) {
       }
     }
   }
+  clearForm();
+}
+
+function clearForm() {
   $formTitle.innerText = 'New Entry';
   $img.setAttribute('src', './images/placeholder-image-square.jpg');
   $formSubmit.reset();
@@ -172,13 +177,20 @@ function handleCancel() {
 
 function handleConfirmDelete(event) {
   const $li = document.querySelectorAll('li');
-  console.log('data.editing:', data.editing);
   for (const list of $li) {
     const $getLi = list.getAttribute('data-entry-id');
-    console.log('test;', list.getAttribute('data-entry-id'));
-    console.log('getLI:', $getLi);
-    if (data.editing.entryId.toString === $getLi) {
-      console.log('its right');
+    if (data.editing.entryId.toString() === $getLi) {
+      list.remove();
+    }
+    for (let i = 0; i < data.entries.length; i++) {
+      if (data.entries[i] === data.editing) {
+        data.entries.shift(i);
+      }
     }
   }
+  data.editing = null;
+  clearForm();
+  toggleNoEntries();
+  handleCancel();
+  viewSwap('entries');
 }
