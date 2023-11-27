@@ -133,11 +133,11 @@ function toggleNoEntries() {
 function viewSwap(view) {
   if (view === 'entries') {
     $entriesView.classList.remove('hidden');
-    $entryFormView.className = 'hidden';
+    $entryFormView.classList.add('hidden');
     data.view = view;
   } else if (view === 'entryForm') {
     $entryFormView.classList.remove('hidden');
-    $entriesView.className = 'hidden';
+    $entriesView.classList.add('hidden');
     $deleteButton.classList.add('hidden');
     data.view = view;
   }
@@ -170,4 +170,15 @@ function handleCancel() {
   $modal.classList.add('hidden');
 }
 
-function handleConfirmDelete(entry) {}
+function handleConfirmDelete(event) {
+  const $li = document.querySelectorAll('li');
+  console.log('data.editing:', data.editing);
+  for (const list of $li) {
+    const $getLi = list.getAttribute('data-entry-id');
+    console.log('test;', list.getAttribute('data-entry-id'));
+    console.log('getLI:', $getLi);
+    if (data.editing.entryId.toString === $getLi) {
+      console.log('its right');
+    }
+  }
+}
